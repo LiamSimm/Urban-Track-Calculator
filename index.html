@@ -1246,13 +1246,13 @@ select:focus, input:focus {
 <script>
 /* ─── CUSTOMER GATE ─────────────────────────────────────────── */
 const CUSTOMERS = {
-  'M.P': { company: "Martins Blinds",   tier: 'gold',   color: '#7B4FA8', password: 'MP' },  // Martin Peterson
-  'M.V': { company: "Melissas Blinds",  tier: 'gold',   color: '#0077CC', password: 'MV' },  // Melissa Vine
-  'M.O': { company: "Martins Blinds",   tier: 'gold',   color: '#2E8B57', password: 'MO' },  // Martin O'Shannassy
-  'J.C': { company: "Johns Blinds",     tier: 'gold',   color: '#C05500', password: 'JC' },  // John Craigie
-  'K.M': { company: "Kevins Blinds",    tier: 'gold',   color: '#1A7A6E', password: 'KM' },  // Kevin Matherson
-  'J.M': { company: "Jacks Blinds",     tier: 'gold',   color: '#B5451B', password: 'JM' },  // Jack Matherson
-  'L.S': { company: "Liams Blinds",     tier: 'gold',   color: '#333F48', password: 'LS' },  // Liam Simmons
+  'M.P': { company: "Martins Blinds",   tier: 'gold',   color: '#7B4FA8' },  // Martin Peterson
+  'M.V': { company: "Melissas Blinds",  tier: 'gold',   color: '#0077CC' },  // Melissa Vine
+  'M.O': { company: "Martins Blinds",   tier: 'gold',   color: '#2E8B57' },  // Martin O'Shannassy
+  'J.C': { company: "Johns Blinds",     tier: 'gold',   color: '#C05500' },  // John Craigie
+  'K.M': { company: "Kevins Blinds",    tier: 'gold',   color: '#1A7A6E' },  // Kevin Matherson
+  'J.M': { company: "Jacks Blinds",     tier: 'gold',   color: '#B5451B' },  // Jack Matherson
+  'L.S': { company: "Liams Blinds",     tier: 'gold',   color: '#333F48' },  // Liam Simmons
 };
 
 /* ─── PRICE LIST (source: UrbanTrack Aus Pricelist August 2026) ───
@@ -1995,12 +1995,9 @@ function initGate() {
   if (!gateBtn) return;
 
   function tryUnlock() {
-    const raw   = (gateInput?.value || '').trim().toUpperCase();
-    const parts = raw.split(/\s+/);
-    const name  = parts[0] || '';
-    const pass  = parts[1] || '';
-    const customer = CUSTOMERS[name];
-    if (customer && pass === customer.password) {
+    const raw = (gateInput?.value || '').trim().toUpperCase();
+    const customer = CUSTOMERS[raw];
+    if (customer) {
       if (gateError) gateError.style.display = 'none';
       unlockApp(customer);
     } else {
