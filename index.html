@@ -1819,8 +1819,9 @@ function calcBlindRows(blind, col) {
     rows.push({ type:'row', key:'ws', code: P.ws_35.code, desc: P.ws_35.desc,
                 qty: Wm, unit:'m', rate: P.ws_35.rate, total: Wm * P.ws_35.rate });
   } else if (blind.ws === '16mm') {
+    // Runs along the bottom rail, so one length = the blind's width (Liam 2026-10-28; was drop × 2)
     rows.push({ type:'row', key:'ws', code: P.ws_16.code, desc: P.ws_16.desc,
-                qty: Dm * 2, unit:'m', rate: P.ws_16.rate, total: Dm * 2 * P.ws_16.rate });
+                qty: Wm, unit:'m', rate: P.ws_16.rate, total: Wm * P.ws_16.rate });
   }
 
   // ── FABRIC ───────────────────────────────────────────────────
